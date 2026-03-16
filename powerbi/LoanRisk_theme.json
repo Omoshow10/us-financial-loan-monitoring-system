@@ -1,0 +1,43 @@
+{
+  "name": "LoanRisk",
+  "dataColors": [
+    "#1a3c5e",
+    "#e8523a",
+    "#f39c12",
+    "#2ecc71",
+    "#3498db",
+    "#95a5a6",
+    "#c0392b",
+    "#8e44ad"
+  ],
+  "background": "#ffffff",
+  "foreground": "#0d1b2a",
+  "tableAccent": "#1a3c5e",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#ffffff" } } }],
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": true, "color": { "solid": { "color": "#00000022" } } }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{
+          "color": { "solid": { "color": "#1a3c5e" } },
+          "fontSize": 28,
+          "fontFamily": "Segoe UI"
+        }],
+        "categoryLabels": [{
+          "color": { "solid": { "color": "#666666" } },
+          "fontSize": 11
+        }]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataColors": [{ "solid": { "color": "#1a3c5e" } }]
+      }
+    }
+  }
+}
