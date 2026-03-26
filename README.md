@@ -11,7 +11,7 @@ This project simulates an end-to-end **loan portfolio risk monitoring system** f
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | Data Generation | Python (NumPy, Pandas) | Synthetic FDIC-inspired loan dataset |
-| Data Storage | PostgreSQL 14+ / SQL Server 2019+ | Schema, indexes, and analytical queries |
+| Data Storage | Microsoft SQL Server 2019+ | T-SQL schema, indexes, and analytical queries |
 | Predictive Model | Python (scikit-learn) | Probability of Default (PD) model |
 | Visualization | Power BI | 4-page interactive risk dashboard |
 
@@ -97,41 +97,28 @@ Outputs to `data/processed/`:
 - `loan_portfolio.csv` — 5,000 synthetic loans with realistic risk profiles
 - `loan_portfolio_scored.csv` — same dataset with model PD scores added
 
-### 3. Set Up the SQL Database
+### 3. Set Up SQL Server
 
-The project supports **PostgreSQL 14+** and **SQL Server 2019+**.
-All four SQL scripts are written in ANSI SQL and run on both platforms.
-See [`docs/setup_guide.md`](docs/setup_guide.md) for the complete database setup walkthrough.
+The project uses **Microsoft SQL Server 2019+** (the free Express edition works). See [`docs/setup_guide.md`](docs/setup_guide.md) for the full walkthrough.
 
-**PostgreSQL (quick start):**
+**Quick start in SSMS:**
 
-```bash
-psql -U postgres -c "CREATE DATABASE loan_risk_db;"
-psql -U postgres -d loan_risk_db -f sql/01_create_schema.sql
-# Edit file paths in Section A of 03_data_ingestion.sql, then:
-psql -U postgres -d loan_risk_db -f sql/03_data_ingestion.sql
-psql -U postgres -d loan_risk_db -f sql/02_dashboard_queries.sql
-```
+1. Open `sql/01_create_schema.sql` → Execute (F5) — creates the database and tables
+2. Open `sql/03_data_ingestion.sql` → update the two file paths → Execute — loads the CSV data
+3. Open `sql/02_dashboard_queries.sql` → Execute — runs all KPI queries
 
-**SQL Server (quick start):**
+### 4. SQL Scripts
 
-Open SSMS, create a database named `loan_risk_db`, then run:
-1. `sql/01_create_schema.sql` — uncomment the SQL Server drop block
-2. `sql/03_data_ingestion.sql` — run **Section B only** (BULK INSERT), update file paths
-3. `sql/02_dashboard_queries.sql` — switch `LIMIT` to `TOP` where noted
-
-### 4. SQL Script Compatibility Reference
-
-| Script | PostgreSQL | SQL Server | Key difference |
-|--------|-----------|------------|----------------|
-| `01_create_schema.sql` | ✅ | ✅ | Use drop block (1) or (2) |
-| `02_dashboard_queries.sql` | ✅ | ✅ | `LIMIT N` vs `TOP N` |
-| `03_data_ingestion.sql` | ✅ Section A | ✅ Section B | `\COPY` vs `BULK INSERT` |
-| `04_risk_segmentation.sql` | ✅ | ✅ | `LIMIT N` vs `TOP N` |
+| Script | Purpose |
+|--------|---------|
+| `01_create_schema.sql` | Creates `loan_risk_db` database, 3 tables, 7 indexes |
+| `02_dashboard_queries.sql` | All KPI queries for the 4 dashboard pages |
+| `03_data_ingestion.sql` | Loads CSV data via `BULK INSERT`, stamps model metadata |
+| `04_risk_segmentation.sql` | Segment matrix, credit bands, watchlist, vintage analysis |
 
 ### 5. Build Power BI Dashboard
 
-See [`powerbi/POWERBI_SETUP.md`](powerbi/POWERBI_SETUP.md) for full step-by-step instructions including CSV import, DAX measures, and visual layout.
+See [`powerbi/POWERBI_SETUP.md`](powerbi/POWERBI_SETUP.md) for full step-by-step instructions including data import, DAX measures, and visual layout.
 
 ---
 
@@ -165,8 +152,7 @@ Python 3.10+
 └── seaborn         – heatmaps
 
 SQL
-├── PostgreSQL 14+   (primary development platform)
-└── SQL Server 2019+ (fully supported — all scripts ANSI compatible)
+└── Microsoft SQL Server 2019+  (T-SQL, BULK INSERT, SSMS)
 
 Power BI Desktop
 └── DAX measures, custom theme, 4-page report
