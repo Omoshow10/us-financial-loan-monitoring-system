@@ -1,12 +1,12 @@
 # 🏦 US Financial Loan Monitoring System
 
-> **A full-stack financial risk analytics project** demonstrating SQL-based portfolio analysis, Python predictive modeling, and Power BI dashboard design — aligned with US financial system stability and regulatory risk frameworks.
+> **A full-stack financial risk analytics project** demonstrating SQL-based portfolio analysis, Python predictive modeling, and Power BI dashboard design aligned with US financial system stability and regulatory risk frameworks.
 
 ---
 
-## 📌 Project Overview
+## 📌 Project Overview 
 
-This project simulates an end-to-end **loan portfolio risk monitoring system** for a US financial institution. It covers the entire analytics pipeline — from raw data ingestion to executive-level dashboards — modeling real-world frameworks used by banks, credit unions, and fintech risk teams.
+This project simulates an end-to-end **loan portfolio risk monitoring system** for a US financial institution. It covers the entire analytics pipeline, from raw data ingestion to executive-level dashboards modeling real-world frameworks used by banks, credit unions, and fintech risk teams.
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -19,7 +19,7 @@ This project simulates an end-to-end **loan portfolio risk monitoring system** f
 
 ## 📊 Dashboard Pages
 
-### Page 1 — Loan Portfolio Overview
+### Page 1 - Loan Portfolio Overview
 | Metric | Description |
 |--------|-------------|
 | Total Loans | Count of all active loans |
@@ -28,20 +28,20 @@ This project simulates an end-to-end **loan portfolio risk monitoring system** f
 | Charge-Off Rate | % of loans written off as losses |
 | Loan Mix by Type | Mortgage, Auto, Personal, Student, SMB, Credit Card |
 
-### Page 2 — Risk Indicators
-- **Early Delinquency Trends** — 30-59 DPD rate over origination cohorts (leading indicator)
-- **High-Risk Borrower Segments** — Deep Subprime vs Subprime vs Near-Prime vs Prime
-- **DTI vs Default** — Debt-to-income concentration analysis
-- **Credit Score Distribution** — Performing vs defaulted loan overlap
+### Page 2 - Risk Indicators
+- **Early Delinquency Trends** - 30-59 DPD rate over origination cohorts (leading indicator)
+- **High-Risk Borrower Segments** - Deep Subprime vs Subprime vs Near-Prime vs Prime
+- **DTI vs Default** - Debt-to-income concentration analysis
+- **Credit Score Distribution** - Performing vs defaulted loan overlap
 
-### Page 3 — Geographic Risk Concentration
+### Page 3 - Geographic Risk Concentration
 - Filled US map colored by state-level delinquency rate
 - Risk tier flags: Low / Moderate / High / Critical
 - Top 15 states by delinquency exposure
 
-### Page 4 — Predictive Risk Model
+### Page 4 - Predictive Risk Model
 - Probability of Default scores (Logistic Regression, AUC ≈ 0.82)
-- Expected Loss = PD × Loan Amount
+- Expected Loss = PD x Loan Amount
 - Risk band classification: Low / Medium / High / Critical
 - Top 50 highest-risk loans
 
@@ -94,8 +94,8 @@ python python/03_default_prediction.py # trains model, exports PD scores
 ```
 
 Outputs to `data/processed/`:
-- `loan_portfolio.csv` — 5,000 synthetic loans with realistic risk profiles
-- `loan_portfolio_scored.csv` — same dataset with model PD scores added
+- `loan_portfolio.csv` - 5,000 synthetic loans with realistic risk profiles
+- `loan_portfolio_scored.csv` - same dataset with model PD scores added
 
 ### 3. Set Up SQL Server
 
@@ -103,9 +103,9 @@ The project uses **Microsoft SQL Server 2019+** (the free Express edition works)
 
 **Quick start in SSMS:**
 
-1. Open `sql/01_create_schema.sql` → Execute (F5) — creates the database and tables
-2. Open `sql/03_data_ingestion.sql` → update the two file paths → Execute — loads the CSV data
-3. Open `sql/02_dashboard_queries.sql` → Execute — runs all KPI queries
+1. Open `sql/01_create_schema.sql` - Execute (F5) - creates the database and tables
+2. Open `sql/03_data_ingestion.sql` - update the two file paths - Execute - loads the CSV data
+3. Open `sql/02_dashboard_queries.sql` - Execute - runs all KPI queries
 
 ### 4. SQL Scripts
 
@@ -134,9 +134,9 @@ See [`powerbi/POWERBI_SETUP.md`](powerbi/POWERBI_SETUP.md) for full step-by-step
 | Model AUC (PD) | 0.82 |
 
 **Top Risk Drivers:**
-1. Credit score below 580 (Deep Subprime) — delinquency rate 4–5× portfolio average
-2. DTI ratio above 43% — significant non-linear increase in default probability
-3. Personal loans and Credit Cards — highest delinquency rates by product type
+1. Credit score below 580 (Deep Subprime) - delinquency rate 4-5x portfolio average
+2. DTI ratio above 43% - significant non-linear increase in default probability
+3. Personal loans and Credit Cards - highest delinquency rates by product type
 4. Geographic concentration in select Sun Belt and Rust Belt states
 
 ---
@@ -175,10 +175,10 @@ seaborn>=0.12.0
 ## 📚 Data Sources & Inspiration
 
 This project uses **synthetic data** modeled after:
-- [FDIC BankFind Suite](https://banks.fdic.gov/bankfind-suite/) — institution-level banking statistics
-- [FFIEC HMDA Data](https://www.consumerfinance.gov/data-research/hmda/) — Home Mortgage Disclosure Act loan records
-- [Fannie Mae Single-Family Loan Performance](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data) — historical mortgage performance
-- Federal Reserve [Charge-Off and Delinquency Rates](https://www.federalreserve.gov/releases/chargeoff/) — national benchmarks
+- [FDIC BankFind Suite](https://banks.fdic.gov/bankfind-suite/) - institution-level banking statistics
+- [FFIEC HMDA Data](https://www.consumerfinance.gov/data-research/hmda/) - Home Mortgage Disclosure Act loan records
+- [Fannie Mae Single-Family Loan Performance](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data) - historical mortgage performance
+- Federal Reserve [Charge-Off and Delinquency Rates](https://www.federalreserve.gov/releases/chargeoff/) - national benchmarks
 
 ---
 
@@ -191,7 +191,7 @@ This project aligns with standard US financial risk monitoring frameworks:
 | **Basel III / IV** | PD model, LGD estimation, Expected Loss |
 | **CECL (ASC 326)** | Forward-looking credit loss provisioning |
 | **FDIC CAMELS** | Asset quality component (delinquency monitoring) |
-| **OCC Comptroller's Handbook** | Credit risk classification (Special Mention → Loss) |
+| **OCC Comptroller's Handbook** | Credit risk classification (Special Mention - Loss) |
 | **CFPB Fair Lending** | Borrower segment analysis, geographic concentration |
 
 ---
@@ -204,7 +204,7 @@ Pull requests welcome. For major changes, please open an issue first.
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
