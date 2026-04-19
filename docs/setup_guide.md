@@ -21,7 +21,7 @@ Step-by-step instructions to get the full project running locally.
 
 ---
 
-## Step 1 — Clone the Repository
+## Step 1 - Clone the Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/us-financial-loan-monitoring.git
@@ -30,7 +30,7 @@ cd us-financial-loan-monitoring
 
 ---
 
-## Step 2 — Python Environment Setup
+## Step 2 - Python Environment Setup
 
 ```bash
 # Create and activate a virtual environment (recommended)
@@ -44,7 +44,7 @@ pip install -r python/requirements.txt
 
 ---
 
-## Step 3 — Generate the Dataset and Train the Model
+## Step 3 - Generate the Dataset and Train the Model
 
 Run these two Python scripts in order. The first generates the loan data; the second trains the Probability of Default model and adds PD scores to the dataset.
 
@@ -77,9 +77,9 @@ After both scripts complete, these two files will exist in `data/processed/`:
 
 ---
 
-## Step 4 — Set Up SQL Server
+## Step 4 - Set Up SQL Server
 
-### 4.1 — Install SQL Server and SSMS
+### 4.1 - Install SQL Server and SSMS
 
 If you do not already have SQL Server installed:
 1. Go to https://www.microsoft.com/en-us/sql-server/sql-server-downloads
@@ -89,10 +89,10 @@ If you do not already have SQL Server installed:
 5. Download and install **SSMS** from https://aka.ms/ssmsfullsetup
 6. Open SSMS and connect using the server name from step 4
 
-### 4.2 — Run the Schema Script
+### 4.2 - Run the Schema Script
 
 In SSMS:
-1. File → Open → `sql/01_create_schema.sql`
+1. File - Open - `sql/01_create_schema.sql`
 2. Click **Execute** (or press F5)
 
 This creates the `loan_risk_db` database and the three tables: `loan_portfolio`, `delinquency_history`, and `loan_risk_scores`.
@@ -109,7 +109,7 @@ loan_portfolio
 loan_risk_scores
 ```
 
-### 4.3 — Update the File Paths in the Ingestion Script
+### 4.3 - Update the File Paths in the Ingestion Script
 
 Open `sql/03_data_ingestion.sql` in any text editor. Find the two `BULK INSERT` commands and update the file paths to match the actual location of your project folder on your machine.
 
@@ -126,10 +126,10 @@ Do this for both `BULK INSERT` statements (one for `loan_portfolio`, one for `lo
 
 > **Important:** Use backslashes `\` not forward slashes `/` in the file paths.
 
-### 4.4 — Run the Data Ingestion Script
+### 4.4 - Run the Data Ingestion Script
 
 In SSMS:
-1. File → Open → `sql/03_data_ingestion.sql`
+1. File - Open - `sql/03_data_ingestion.sql`
 2. Click **Execute**
 
 Expected output:
@@ -146,7 +146,7 @@ loan_risk_scores     | 5000
 delinquency_history  | 24
 ```
 
-### 4.5 — Run the Dashboard and Segmentation Queries
+### 4.5 - Run the Dashboard and Segmentation Queries
 
 In SSMS, open and execute each script to verify the queries work:
 
@@ -159,20 +159,20 @@ Each script contains multiple `GO`-separated query blocks. You can run the entir
 
 ---
 
-## Step 5 — Connect Power BI to SQL Server
+## Step 5 - Connect Power BI to SQL Server
 
-### Option A — Connect directly to SQL Server (recommended for live refresh)
+### Option A - Connect directly to SQL Server (recommended for live refresh)
 
 1. Open **Power BI Desktop**
-2. **Home → Get Data → SQL Server**
+2. **Home - Get Data - SQL Server**
 3. Enter your server name (e.g., `localhost\SQLEXPRESS` or `localhost`)
 4. Enter database name: `loan_risk_db`
-5. Click **OK** → select `loan_portfolio` and `loan_risk_scores` tables → **Load**
+5. Click **OK** - select `loan_portfolio` and `loan_risk_scores` tables - **Load**
 
-### Option B — Load from CSV (simpler, no SQL Server connection needed)
+### Option B - Load from CSV (simpler, no SQL Server connection needed)
 
 1. Open **Power BI Desktop**
-2. **Home → Get Data → Text/CSV**
+2. **Home - Get Data - Text/CSV**
 3. Select `data/processed/loan_portfolio_scored.csv`
 4. Click **Load**
 
@@ -189,9 +189,9 @@ Each script contains multiple `GO`-separated query blocks. You can run the entir
 ### Cannot connect to SQL Server in SSMS
 
 Confirm the SQL Server service is running:
-- Press Windows key → type `services.msc` → press Enter
+- Press Windows key - type `services.msc` - press Enter
 - Find **SQL Server (MSSQLSERVER)** or **SQL Server (SQLEXPRESS)**
-- Right-click → **Start** if it is not running
+- Right-click - **Start** if it is not running
 
 Try these server name formats if `localhost` does not work:
 ```
@@ -201,20 +201,20 @@ localhost                ← Developer or Standard edition
 (local)                  ← Alternative for default instance
 ```
 
-### BULK INSERT fails — file could not be opened
+### BULK INSERT fails - file could not be opened
 
 SQL Server needs read permission on the folder containing your CSV files:
-1. In File Explorer, right-click the `data\processed` folder → **Properties**
-2. Click **Security** tab → **Edit** → **Add**
+1. In File Explorer, right-click the `data\processed` folder - **Properties**
+2. Click **Security** tab - **Edit** - **Add**
 3. Type the SQL Server service account name (found in services.msc under "Log On As")
-4. Give it **Read** permission → **OK**
+4. Give it **Read** permission - **OK**
 
 Alternatively, grant the permission in SSMS (run as admin):
 ```sql
 GRANT ADMINISTER BULK OPERATIONS TO [your_login];
 ```
 
-### BULK INSERT fails — cannot find file
+### BULK INSERT fails - cannot find file
 
 The file path in the script uses a placeholder. You must update it to your actual path before running. See Step 4.3 above.
 
@@ -235,35 +235,35 @@ pip install -r python/requirements.txt --upgrade
 
 ```
 us-financial-loan-monitoring/
+|
+|__ sql/
+|   |__ 01_create_schema.sql       - Run first: database, tables, indexes
+│   |__ 02_dashboard_queries.sql   - KPI queries for all four dashboard pages
+│   |__ 03_data_ingestion.sql      - Loads CSV data via BULK INSERT
+│   |__ 04_risk_segmentation.sql   - Segment matrix, watchlist, vintage analysis
 │
-├── sql/
-│   ├── 01_create_schema.sql       ← Run first: database, tables, indexes
-│   ├── 02_dashboard_queries.sql   ← KPI queries for all four dashboard pages
-│   ├── 03_data_ingestion.sql      ← Loads CSV data via BULK INSERT
-│   └── 04_risk_segmentation.sql   ← Segment matrix, watchlist, vintage analysis
+|__ python/
+│   |__01_data_generation.py      - Run first — generates loan_portfolio.csv
+│   |__02_eda_analysis.py         - Portfolio overview charts (optional)
+│   |__03_default_prediction.py   - Run second — trains PD model, adds scores
+│   |__requirements.txt
 │
-├── python/
-│   ├── 01_data_generation.py      ← Run first — generates loan_portfolio.csv
-│   ├── 02_eda_analysis.py         ← Portfolio overview charts (optional)
-│   ├── 03_default_prediction.py   ← Run second — trains PD model, adds scores
-│   └── requirements.txt
+|__ powerbi/
+│   |__ POWERBI_SETUP.md           - Dashboard build guide
+│   |__ DAX_measures.md            - All DAX formulas
+│   |__ LoanRisk_theme.json        - Custom dark theme
 │
-├── powerbi/
-│   ├── POWERBI_SETUP.md           ← Dashboard build guide
-│   ├── DAX_measures.md            ← All DAX formulas
-│   └── LoanRisk_theme.json        ← Custom dark theme
+|__ data/
+│   |__ processed/
+│       |__ loan_portfolio.csv         - Generated by Step 3
+│       |__ loan_portfolio_scored.csv  - Generated by Step 3 (Power BI input)
 │
-├── data/
-│   └── processed/
-│       ├── loan_portfolio.csv         ← Generated by Step 3
-│       └── loan_portfolio_scored.csv  ← Generated by Step 3 (Power BI input)
+|__ outputs/
+│   |__ eda_charts.png             - 6-panel risk analysis chart
+│   |__ portfolio_overview.png     - 9-panel portfolio overview
+│   |__ model_performance.png      - ROC curves + confusion matrix
 │
-├── outputs/
-│   ├── eda_charts.png             ← 6-panel risk analysis chart
-│   ├── portfolio_overview.png     ← 9-panel portfolio overview
-│   └── model_performance.png      ← ROC curves + confusion matrix
-│
-└── docs/
-    ├── setup_guide.md             ← This file
-    └── methodology.md             ← Risk metric definitions
+|__ docs/
+    |__ setup_guide.md             - This file
+    |__ methodology.md             - Risk metric definitions
 ```
