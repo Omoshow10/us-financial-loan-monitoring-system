@@ -23,8 +23,8 @@ Delinquency Rate (30+) = Loans with DPD ≥ 30 / Total Active Loans × 100
 | Rate | Signal |
 |------|--------|
 | < 2% | Excellent portfolio health |
-| 2–4% | Normal range for diversified portfolio |
-| 4–6% | Elevated; warrants management attention |
+| 2-4% | Normal range for diversified portfolio |
+| 4-6% | Elevated; warrants management attention |
 | > 6% | High risk; potential regulatory scrutiny |
 
 ---
@@ -39,7 +39,7 @@ NPL Rate = Loans with DPD ≥ 90 / Total Active Loans × 100
 ```
 
 **Regulatory Context:**
-- Loans 90+ DPD are typically placed on **non-accrual status** under US GAAP — the bank stops recognizing interest income
+- Loans 90+ DPD are typically placed on **non-accrual status** under US GAAP - the bank stops recognizing interest income
 - The OCC and FDIC use NPL ratio as a primary credit quality indicator in bank examinations
 - Basel III uses 90-DPD as the default trigger in probability of default (PD) models
 
@@ -59,7 +59,7 @@ Net Charge-Off Rate   = (Gross Charge-Offs - Recoveries) / Average Loan Balance 
 **Regulatory Context:**
 - US banks report charge-offs quarterly in the FFIEC Call Report (Schedule RI-B)
 - The Federal Reserve tracks aggregate net charge-off rates by loan type in the G.19 and H.8 statistical releases
-- Credit card NCO rates are typically 3–5× higher than mortgage NCO rates
+- Credit card NCO rates are typically 3-5× higher than mortgage NCO rates
 
 **Industry Benchmarks (approximate):**
 | Product | Typical NCO Range |
@@ -110,13 +110,13 @@ DTI = Total Monthly Debt Payments / Gross Monthly Income × 100
 
 **Definition:** Credit score (300–850) assigned by FICO based on credit bureau data.
 
-| FICO Range | Tier | Typical Lending Treatment |
-|------------|------|--------------------------|
-| 740–850 | Super-Prime | Best rates; broadest product access |
-| 680–739 | Prime | Standard market rates |
-| 620–679 | Near-Prime | Slightly elevated rates; some restrictions |
-| 580–619 | Subprime | Significantly elevated rates; FHA eligible |
-| < 580 | Deep Subprime | Very limited access; specialty lenders only |
+| FICO Range | Tier          | Typical Lending Treatment                   |
+| ---------- | ------------- | ------------------------------------------- |
+| 740-850    | Super-Prime   | Best rates; broadest product access         |
+| 680-739    | Prime         | Standard market rates                       |
+| 620-679    | Near-Prime    | Slightly elevated rates; some restrictions  |
+| 580-619    | Subprime      | Significantly elevated rates; FHA eligible  |
+| < 580      | Deep Subprime | Very limited access; specialty lenders only |
 
 ---
 
@@ -127,9 +127,9 @@ DTI = Total Monthly Debt Payments / Gross Monthly Income × 100
 **Methodology:**
 This project trains three models using supervised machine learning:
 
-1. **Logistic Regression** — Interpretable baseline; coefficients directly map to credit scorecard weights
-2. **Random Forest** — Ensemble method capturing non-linear relationships (e.g., FICO × DTI interaction)
-3. **XGBoost** — Gradient boosted trees; typically highest accuracy for tabular financial data
+1. **Logistic Regression** - Interpretable baseline; coefficients directly map to credit scorecard weights
+2. **Random Forest** - Ensemble method capturing non-linear relationships (e.g., FICO × DTI interaction)
+3. **XGBoost** - Gradient boosted trees; typically highest accuracy for tabular financial data
 
 **Feature Set:**
 | Feature | Direction | Rationale |
