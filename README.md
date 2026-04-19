@@ -20,13 +20,13 @@ This project simulates an end-to-end **loan portfolio risk monitoring system** f
 ## 📊 Dashboard Pages
 
 ### Page 1 - Loan Portfolio Overview
-| Metric | Description |
-|--------|-------------|
-| Total Loans | Count of all active loans |
-| Total Portfolio Balance | Sum of outstanding principal |
-| Delinquency Rate | % of loans with any missed payment |
-| Charge-Off Rate | % of loans written off as losses |
-| Loan Mix by Type | Mortgage, Auto, Personal, Student, SMB, Credit Card |
+| Metric                  | Description                                         |
+| ----------------------- | --------------------------------------------------- |
+| Total Loans             | Count of all active loans                           |
+| Total Portfolio Balance | Sum of outstanding principal                        |
+| Delinquency Rate        | % of loans with any missed payment                  |
+| Charge-Off Rate         | % of loans written off as losses                    |
+| Loan Mix by Type        | Mortgage, Auto, Personal, Student, SMB, Credit Card |
 
 ### Page 2 - Risk Indicators
 - **Early Delinquency Trends** - 30-59 DPD rate over origination cohorts (leading indicator)

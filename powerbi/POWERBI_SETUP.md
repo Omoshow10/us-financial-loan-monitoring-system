@@ -173,7 +173,7 @@ SWITCH(
 
 ## Step 5: Dashboard Pages
 
-### Page 1 — Portfolio Overview
+### Page 1 - Portfolio Overview
 
 **Visuals:**
 - 5 KPI cards (top row): Total Loans, Total Balance, Avg Credit Score, Delinquency Rate %, Charge-Off Rate
@@ -182,7 +182,7 @@ SWITCH(
 - Line chart: Monthly origination volume (use `DelinquencyTrends[month]`)
 - Table: Top 10 states by balance
 
-### Page 2 — Risk Indicators
+### Page 2 - Risk Indicators
 
 **Visuals:**
 - KPI cards: Early Delinquency Rate, 90+ DPD Rate, Avg DTI, Avg PD
@@ -191,7 +191,7 @@ SWITCH(
 - Clustered bar: Delinquency Rate by Borrower Segment
 - Scatter plot: Credit Score vs Probability of Default (credit_score x-axis, model_pd y-axis, loan_amount as bubble size)
 
-### Page 3 — Geographic Risk
+### Page 3 - Geographic Risk
 
 **Visuals:**
 - Filled map: State → color by `delinquency_rate` (use `GeographicRisk` table)
@@ -199,7 +199,7 @@ SWITCH(
 - Bar chart: Top 15 states by delinquency rate
 - Table: State risk scorecard (state, total_loans, delinquency_rate, charge_off_rate, avg_credit_score, risk_tier)
 
-### Page 4 — Predictive Model
+### Page 4 - Predictive Model
 
 **Visuals:**
 - KPI: Expected Loss ($), Avg PD %, High Risk Loan Count
